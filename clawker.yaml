@@ -1,0 +1,97 @@
+# TypeScript/React Developer Image
+# Sets up Node.js via nvm with pnpm, ideal for React, Next.js, or any TypeScript project.
+
+version: "1"
+
+# ─── Build ───────────────────────────────────────────────────────────────────
+build:
+  image: "node:bookworm-slim"
+
+  packages:
+    - ca-certificates
+    - openssh-client
+
+  inject:
+    after_user_switch: |
+      ENV NVM_DIR="/home/claude/.nvm"
+      ENV NODE_VERSION="24"
+
+  instructions:
+    # Install nvm, Node.js, and pnpm as the claude user
+    user_run:
+      - cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
+      - cmd: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+      - cmd: |
+          . "$NVM_DIR/nvm.sh" && \
+          nvm install $NODE_VERSION && \
+          nvm use $NODE_VERSION && \
+          nvm alias default $NODE_VERSION
+      - cmd: |
+          . "$NVM_DIR/nvm.sh" && \
+          npm install -g pnpm typescript
+      - cmd: |
+          echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
+          echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.bashrc && \
+          echo '[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"' >> ~/.bashrc
+
+# ─── Agent ───────────────────────────────────────────────────────────────────
+agent:
+  env_file: 
+    - .env
+  from_env:
+    - GH_TOKEN
+    - CONTEXT7_API_KEY
+  # env:
+  #   NODE_ENV: "development"
+  post_init: |
+    cd /workspace
+    if [ -f pnpm-lock.yaml ]; then
+      pnpm install
+    elif [ -f package-lock.json ]; then
+      npm ci
+    elif [ -f package.json ]; then
+      npm install
+    fi
+    claude mcp add -s local serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context claude-code --project "$(pwd)" --enable-web-dashboard false
+    claude mcp add -s user --header "CONTEXT7_API_KEY: $CONTEXT7_API_KEY" --transport http context7 https://mcp.context7.com/mcp
+    claude mcp add -s user -t http deepwiki https://mcp.deepwiki.com/mcp
+  enable_shared_dir: true
+
+# ─── Workspace ───────────────────────────────────────────────────────────────
+workspace:
+  remote_path: "/workspace"
+  default_mode: "bind"
+
+# ─── Security ────────────────────────────────────────────────────────────────
+security:
+  firewall:
+    enable: false
+    add_domains:
+      - "registry.yarnpkg.com"
+      - mcp.deepwiki.com
+      - mcp.context7.com
+      - files.pythonhosted.org
+      - docs.astro.build
+    # registry.npmjs.org is already in the default firewall allowlist
+    ip_range_sources:
+      - name: github
+  docker_socket: false
+  git_credentials:
+    forward_https: true
+    forward_ssh: true
+    forward_gpg: true
+    copy_git_config: true
+
+# ─── Loop (optional) ────────────────────────────────────────────────────────
+# loop:
+#   max_loops: 50
+#   stagnation_threshold: 3
+#   timeout_minutes: 15
+
+# ─── Alternative: Use official Node.js image ────────────────────────────────
+# build:
+#   image: "node:22-bookworm"
+#   instructions:
+#     user_run:
+#       - cmd: "npm install -g pnpm typescript"
