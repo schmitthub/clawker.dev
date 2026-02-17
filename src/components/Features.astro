@@ -4,7 +4,8 @@ import { features } from '../data/features';
 
 <section class="features">
 	<div class="container">
-		<h2 class="section-title">How it works</h2>
+		<h2 class="section-title">Features</h2>
+		<p class="section-subtitle">all the negative parallelisms, rule of threes, and em dashes below compliments of ai slop... ain't no way i was gunna write the splash page myself</p>
 		<div class="grid">
 			{features.map((feature) => (
 				<div class="card">
@@ -29,8 +30,16 @@ import { features } from '../data/features';
 		font-size: clamp(1.5rem, 3vw, 2rem);
 		font-weight: 600;
 		text-align: center;
-		margin-bottom: 3rem;
+		margin-bottom: 0.5rem;
 		color: var(--text-primary);
+	}
+
+	.section-subtitle {
+		text-align: center;
+		font-size: 0.85rem;
+		color: var(--text-secondary);
+		opacity: 0.6;
+		margin-bottom: 3rem;
 	}
 
 	.grid {
