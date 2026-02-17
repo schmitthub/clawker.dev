@@ -41,13 +41,17 @@
 	}
 
 	.logo {
-		font-family: var(--font-display);
+		font-family: 'Inter', sans-serif;
 		font-size: clamp(3.5rem, 10vw, 6rem);
 		font-weight: 700;
-		color: var(--accent-bright);
+		background: linear-gradient(135deg, var(--accent-bright) 0%, #fbbf24 50%, var(--accent-mid) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 		letter-spacing: -0.02em;
 		margin-bottom: 1.5rem;
 		line-height: 1;
+		filter: brightness(1.15);
 	}
 
 	h1 {
