@@ -1,0 +1,177 @@
+---
+---
+
+<section class="install" id="install">
+	<div class="container">
+		<h2 class="section-title">Get Started</h2>
+		<p class="section-desc">Single Go binary. macOS and Linux. Needs Docker.</p>
+
+		<div class="install-grid">
+			<div class="install-card">
+				<span class="install-label">Homebrew</span>
+				<div class="install-command">
+					<span class="prompt">$</span>
+					<code>brew install schmitthub/tap/clawker</code>
+					<button class="copy-btn" data-cmd="brew install schmitthub/tap/clawker" aria-label="Copy command">
+						<svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+							<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+						</svg>
+						<svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="20 6 9 17 4 12"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
+
+			<div class="install-card">
+				<span class="install-label">Shell Script</span>
+				<div class="install-command">
+					<span class="prompt">$</span>
+					<code>curl -fsSL https://clawker.dev/install.sh | bash</code>
+					<button class="copy-btn" data-cmd="curl -fsSL https://clawker.dev/install.sh | bash" aria-label="Copy command">
+						<svg class="icon-copy" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+							<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+						</svg>
+						<svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="20 6 9 17 4 12"></polyline>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<p class="docs-link">
+			Read the <a href="https://docs.clawker.dev" target="_blank" rel="noopener noreferrer">documentation</a> to learn more.
+		</p>
+	</div>
+</section>
+
+<style>
+	.install {
+		padding: 5rem 0;
+	}
+
+	.section-title {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		font-weight: 600;
+		text-align: center;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.section-desc {
+		text-align: center;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		font-size: 0.95rem;
+	}
+
+	.install-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1.25rem;
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	@media (max-width: 640px) {
+		.install-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.install-card {
+		border-radius: 10px;
+		border: 1px solid var(--border-subtle);
+		background: var(--bg-elevated);
+		overflow: hidden;
+	}
+
+	.install-label {
+		display: block;
+		padding: 0.6rem 1rem;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		border-bottom: 1px solid var(--border-subtle);
+		background: var(--bg-surface);
+	}
+
+	.install-command {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		padding: 1rem;
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+	}
+
+	.prompt {
+		color: var(--cyan-bright);
+		font-weight: 700;
+		flex-shrink: 0;
+	}
+
+	.install-command code {
+		flex: 1;
+		color: var(--text-primary);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.copy-btn {
+		flex-shrink: 0;
+		padding: 4px;
+		color: var(--text-muted);
+		transition: color 0.2s;
+	}
+	.copy-btn:hover {
+		color: var(--text-primary);
+	}
+	.copy-btn .icon-check {
+		display: none;
+		color: #22c55e;
+	}
+	.copy-btn.copied .icon-copy {
+		display: none;
+	}
+	.copy-btn.copied .icon-check {
+		display: block;
+	}
+
+	.docs-link {
+		text-align: center;
+		margin-top: 2rem;
+		color: var(--text-secondary);
+		font-size: 0.9rem;
+	}
+	.docs-link a {
+		color: var(--accent-bright);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		transition: color 0.2s;
+	}
+	.docs-link a:hover {
+		color: var(--accent-mid);
+	}
+</style>
+
+<script>
+	document.querySelectorAll('.install .copy-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const cmd = (btn as HTMLElement).dataset.cmd;
+			if (cmd) {
+				navigator.clipboard.writeText(cmd).then(() => {
+					btn.classList.add('copied');
+					setTimeout(() => btn.classList.remove('copied'), 2000);
+				});
+			}
+		});
+	});
+</script>

@@ -1,0 +1,116 @@
+---
+---
+
+<section class="hero">
+	<div class="container">
+		<div class="hero-content">
+			<p class="logo">clawker</p>
+			<h1>Put your agents <span class="gradient">in containers</span><br />where they belong.</h1>
+			<p class="subtitle">
+				What happens when devcontainers and k8s have a Claude Code baby.
+				Isolated, firewalled, credential-forwarding agent-in-container environments. One CLI.
+			</p>
+			<div class="cta-row">
+				<a href="#install" class="btn btn-primary">Get Started</a>
+				<a
+					href="https://github.com/schmitthub/clawker"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn btn-secondary"
+				>
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+					</svg>
+					View on GitHub
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		padding: 8rem 0 4rem;
+		text-align: center;
+		animation: fadeInUp 0.8s ease-out both;
+	}
+
+	.hero-content {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+
+	.logo {
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 10vw, 6rem);
+		font-weight: 700;
+		color: var(--accent-bright);
+		letter-spacing: -0.02em;
+		margin-bottom: 1.5rem;
+		line-height: 1;
+	}
+
+	h1 {
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-weight: 700;
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+		color: var(--text-primary);
+	}
+
+	.gradient {
+		background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-bright) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.subtitle {
+		font-size: 1.1rem;
+		color: var(--text-secondary);
+		line-height: 1.7;
+		max-width: 640px;
+		margin: 0 auto 2.5rem;
+	}
+
+	.cta-row {
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.75rem 1.75rem;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 0.9rem;
+		transition: all 0.2s ease;
+	}
+
+	.btn-primary {
+		background: var(--accent-bright);
+		color: var(--bg-deep);
+	}
+	.btn-primary:hover {
+		background: var(--accent-mid);
+		box-shadow: 0 0 24px var(--accent-glow);
+	}
+
+	.btn-secondary {
+		border: 1px solid var(--border-subtle);
+		color: var(--text-secondary);
+	}
+	.btn-secondary:hover {
+		border-color: var(--accent-bright);
+		color: var(--text-primary);
+	}
+
+	.btn-secondary svg {
+		flex-shrink: 0;
+	}
+</style>
