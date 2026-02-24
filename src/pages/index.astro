@@ -5,12 +5,55 @@ import TerminalDemo from '../components/TerminalDemo.astro';
 import Features from '../components/Features.astro';
 import InstallBlock from '../components/InstallBlock.astro';
 import Footer from '../components/Footer.astro';
+import threatModelSvg from '../assets/threat-model.svg';
 ---
 
 <Layout title="clawker — Agent-in-container for Claude Code">
 	<Hero />
+	<section class="threat-model">
+		<div class="threat-model-container">
+			<h2 class="section-title">Harness the harness</h2>
+			<p class="section-desc">How using clawker compares to just running Claude Code bare metal or in sandbox mode.</p>
+			<img src={threatModelSvg.src} alt="Threat model diagram comparing bare metal, sandbox, and container deployment modes for Claude Code" width="880" height="780" loading="lazy" />
+		</div>
+	</section>
 	<TerminalDemo />
 	<Features />
 	<InstallBlock />
 	<Footer />
 </Layout>
+
+<style>
+	.threat-model {
+		padding: 2rem 0 4rem;
+		animation: fadeInUp 0.8s ease-out 0.2s both;
+	}
+
+	.threat-model-container {
+		max-width: 880px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.section-title {
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 3vw, 2rem);
+		font-weight: 600;
+		text-align: center;
+		margin-bottom: 0.75rem;
+		color: var(--text-primary);
+	}
+
+	.section-desc {
+		text-align: center;
+		color: var(--text-secondary);
+		margin-bottom: 2.5rem;
+		font-size: 0.95rem;
+	}
+
+	.threat-model img {
+		width: 100%;
+		height: auto;
+		border-radius: 12px;
+	}
+</style>
