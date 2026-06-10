@@ -5,21 +5,86 @@ import TerminalDemo from '../components/TerminalDemo.astro';
 import Features from '../components/Features.astro';
 import InstallBlock from '../components/InstallBlock.astro';
 import Footer from '../components/Footer.astro';
+import Faq from '../components/Faq.astro';
 import threatModelSvg from '../assets/threat-model.svg';
+import { faq } from '../data/faq';
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: faq.map((item) => ({
+		'@type': 'Question',
+		name: item.question,
+		acceptedAnswer: { '@type': 'Answer', text: item.answer },
+	})),
+};
+
+const websiteSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'clawker',
+	url: 'https://clawker.dev',
+};
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'SoftwareApplication',
+	name: 'clawker',
+	url: 'https://clawker.dev',
+	description:
+		'Open-source AI container sandbox for Anthropic’s Claude Code agents. Kernel-side egress firewall, credential forwarding, and monitoring — secure-by-default guardrails for agentic coding with mythos-class models like Fable 5.',
+	applicationCategory: 'DeveloperApplication',
+	operatingSystem: 'macOS, Linux',
+	downloadUrl: 'https://github.com/schmitthub/clawker',
+	softwareHelp: { '@type': 'CreativeWork', url: 'https://docs.clawker.dev' },
+	license: 'https://opensource.org/license/mit',
+	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+	keywords:
+		'ai container sandbox, claude code, anthropic, fable 5, mythos-class, agent sandbox, agent safety, agent containment, ai agent, ai sandbox, security, docker, containerization, llm, golang',
+	featureList: [
+		'Deny-by-default kernel-side egress firewall (Envoy, CoreDNS, eBPF)',
+		'Path- and method-scoped network rules with TLS inspection',
+		'SSH, GPG, git, and Claude Code credential forwarding',
+		'Bind or snapshot workspace isolation modes',
+		'Git worktrees for parallel agents',
+		'Per-decision egress audit trail',
+		'OpenTelemetry monitoring with Claude Code cost dashboards',
+		'Control plane with mTLS-authenticated agents',
+	],
+	sameAs: ['https://github.com/schmitthub/clawker', 'https://docs.clawker.dev'],
+};
 ---
 
-<Layout title="clawker — Agent-in-container for Claude Code">
+<Layout
+	title="clawker — AI Container Sandbox for Claude Code Agents"
+	ogImage="https://clawker.dev/og-image.png"
+>
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+	<script type="application/ld+json" slot="head" set:html={JSON.stringify(websiteSchema)} />
+	<main>
 	<Hero />
 	<section class="threat-model">
 		<div class="threat-model-container">
 			<h2 class="section-title">Harness the harness</h2>
-			<p class="section-desc">How using clawker compares to just running Claude Code bare metal or in sandbox mode.</p>
-			<img src={threatModelSvg.src} alt="Threat model diagram comparing bare metal, sandbox, and container deployment modes for Claude Code" width="880" height="780" loading="lazy" />
+			<p class="section-desc">A padded cell for AI coding agents — how clawker's container security model compares to running Claude Code bare metal or in sandbox mode.</p>
+			<img src={threatModelSvg.src} alt="Threat model diagram comparing the security of bare metal, sandbox, and container deployment modes for Claude Code AI agents" width="880" height="780" loading="lazy" />
+			<blockquote class="threat-quote">
+				<p>"Prompt injection can change the agent's intent, but it can't change the container's constraints."</p>
+				<cite>— the <a href="https://docs.clawker.dev/threat-model" target="_blank" rel="noopener noreferrer">threat model</a></cite>
+			</blockquote>
+			<p class="deep-links">
+				Go deeper: <a href="https://docs.clawker.dev/firewall" target="_blank" rel="noopener noreferrer">egress firewall architecture</a> ·
+				<a href="https://docs.clawker.dev/architecture" target="_blank" rel="noopener noreferrer">system architecture</a> ·
+				<a href="https://docs.clawker.dev/container-internals" target="_blank" rel="noopener noreferrer">container internals</a>
+			</p>
 		</div>
 	</section>
 	<TerminalDemo />
 	<Features />
+	<Faq />
 	<InstallBlock />
+	</main>
 	<Footer />
 </Layout>
 
@@ -55,5 +120,49 @@ import threatModelSvg from '../assets/threat-model.svg';
 		width: 100%;
 		height: auto;
 		border-radius: 12px;
+	}
+
+	.threat-quote {
+		margin: 2.5rem auto 0;
+		max-width: 640px;
+		text-align: center;
+		border-left: none;
+	}
+	.threat-quote p {
+		font-family: var(--font-display);
+		font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+		font-weight: 500;
+		color: var(--text-primary);
+		line-height: 1.5;
+	}
+	.threat-quote cite {
+		display: block;
+		margin-top: 0.75rem;
+		font-size: 0.85rem;
+		font-style: normal;
+		color: var(--text-muted);
+	}
+	.threat-quote cite a {
+		color: var(--text-secondary);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.threat-quote cite a:hover {
+		color: var(--accent-bright);
+	}
+
+	.deep-links {
+		margin-top: 1.5rem;
+		text-align: center;
+		font-size: 0.85rem;
+		color: var(--text-muted);
+	}
+	.deep-links a {
+		color: var(--text-secondary);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.deep-links a:hover {
+		color: var(--accent-bright);
 	}
 </style>

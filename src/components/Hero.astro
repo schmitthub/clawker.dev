@@ -7,8 +7,11 @@
 			<p class="logo">clawker</p>
 			<h1>Put your agents <span class="gradient">in containers</span><br />where they belong.</h1>
 			<p class="subtitle">
-				What happens when devcontainers and k8s have a Claude Code baby.
-				Isolated, firewalled, credential-forwarding agent-in-container environments. One CLI.
+				Isolated, firewalled, policy-gated, monitored, credential-forwarding container
+				environments for your Claude Code agents — secure by default. One CLI.
+			</p>
+			<p class="subtitle-kicker">
+				Handing the keys to a mythos-class Fable 5 agent? You <em>especially</em> want the sandbox.
 			</p>
 			<div class="cta-row">
 				<a href="#install" class="btn btn-primary">Get Started</a>
@@ -75,7 +78,18 @@
 		color: var(--text-secondary);
 		line-height: 1.7;
 		max-width: 640px;
+		margin: 0 auto 0.75rem;
+	}
+
+	.subtitle-kicker {
+		font-size: 0.95rem;
+		color: var(--text-muted);
+		max-width: 640px;
 		margin: 0 auto 2.5rem;
+	}
+	.subtitle-kicker em {
+		color: var(--accent-bright);
+		font-style: italic;
 	}
 
 	.cta-row {

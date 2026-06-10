@@ -1,0 +1,18 @@
+# clawker
+
+> Secure, isolated Docker environments for Anthropic's Claude Code agents. An open-source AI container sandbox: deny-by-default kernel-side egress firewall (Envoy + CoreDNS + eBPF), credential forwarding without exposing keys, git worktrees for parallel agents, and OpenTelemetry monitoring with Claude Code cost dashboards. Works with any model Claude Code runs, from Haiku to mythos-class Fable 5. MIT licensed, written in Go, macOS and Linux.
+
+This site (clawker.dev) is the project splash page. Full documentation lives at docs.clawker.dev, which also serves an llms.txt and a markdown twin of every page (append .md).
+
+## Documentation
+
+- [Quickstart](https://docs.clawker.dev/quickstart): install, init a project, run your first containerized agent
+- [Threat Model](https://docs.clawker.dev/threat-model): why AI agents need containment and what clawker mitigates
+- [Firewall Guide](https://docs.clawker.dev/firewall): Envoy, CoreDNS, and eBPF egress architecture
+- [Architecture](https://docs.clawker.dev/architecture): system layers, control plane, trust boundaries
+- [Container Internals](https://docs.clawker.dev/container-internals): workspace mounting and container lifecycle
+- [CLI Reference](https://docs.clawker.dev/cli-reference/clawker): all commands
+
+## Source
+
+- [GitHub](https://github.com/schmitthub/clawker): source code, releases, issues
