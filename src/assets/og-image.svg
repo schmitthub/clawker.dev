@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#1a1a1f"/>
+      <stop offset="100%" stop-color="#09090b"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="1" y="1" width="1198" height="628" fill="none" stroke="rgba(245,158,11,0.25)" stroke-width="2"/>
+  <text x="600" y="270" text-anchor="middle" font-family="Outfit" font-weight="bold" font-size="150" fill="url(#logo)">clawker</text>
+  <text x="600" y="370" text-anchor="middle" font-family="Outfit" font-weight="bold" font-size="44" fill="#f0f0f5">Put your agents in containers where they belong.</text>
+  <text x="600" y="440" text-anchor="middle" font-family="Outfit" font-size="30" fill="#8b8b9e">AI container sandbox for Anthropic&#8217;s Claude Code agents</text>
+  <rect x="415" y="490" width="385" height="52" rx="26" fill="#111113" stroke="rgba(139,139,158,0.3)" stroke-width="1.5"/>
+  <circle cx="448" cy="516" r="6" fill="#f59e0b"/>
+  <text x="472" y="526" font-family="Outfit" font-size="24" fill="#8b8b9e">secure by default &#183; open source</text>
+</svg>

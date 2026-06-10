@@ -2,6 +2,7 @@ export interface Feature {
 	icon: string;
 	title: string;
 	description: string;
+	href?: string;
 }
 
 export const features: Feature[] = [
@@ -9,37 +10,41 @@ export const features: Feature[] = [
 		icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z',
 		title: 'Agent-in-Container',
 		description:
-			'Each agent gets its own isolated container with embedded Dockerfile templates. Alpine or Debian, your call.',
+			'Each Claude Code agent gets its own sandboxed Docker container with embedded Dockerfile templates and a purpose-built init daemon. Alpine or Debian, your call.',
+		href: 'https://docs.clawker.dev/container-internals',
 	},
 	{
 		icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 19h2v2 M19 19v2',
 		title: 'Fresh or Copy Agent Mode',
 		description:
-			'Clean install or seamless transition — bring your existing Claude Code settings, plugins, skills, and config along for the ride.',
+			'Clean install or seamless transition — bring your existing Claude Code settings, plugins, skills, and auth along for the ride. Config and memory persist in volumes across container restarts.',
 	},
 	{
 		icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
 		title: 'Bind or Snapshot',
 		description:
-			'Live-sync your workspace with bind mounts, or give the agent a snapshot copy. You pick the isolation level.',
+			'Live-sync your workspace with bind mounts, or give the agent a snapshot copy for pure isolation. You pick the sandbox level.',
 	},
 	{
 		icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z',
-		title: 'Firewalled',
+		title: 'Kernel-Side Egress Firewall',
 		description:
-			'Block internet access by default, whitelist only the domains you need. Per-project rules via clawker.yaml.',
+			'Deny-by-default networking via Envoy, CoreDNS, and eBPF — unlisted domains don\'t even resolve. TLS inspection enables path- and method-level rules, enforced kernel-side where the agent holds no privileges. Per-project rules via clawker.yaml.',
+		href: 'https://docs.clawker.dev/firewall',
 	},
 	{
 		icon: 'M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z M4 22v-7',
 		title: 'Credential Forwarding',
 		description:
-			'SSH keys, GPG keys, and git config forwarded from your host automatically — just like devcontainers. No copy-pasting secrets into containers.',
+			'SSH agent, GPG agent, git HTTPS, and Claude Code auth forwarded from your host automatically — private keys never enter the container. No copy-pasting secrets.',
+		href: 'https://docs.clawker.dev/credentials',
 	},
 	{
 		icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z M4.5 4.5l15 15',
 		title: 'Jailed Docker',
 		description:
 			'A guardrail layer between clawker and Docker that prevents operations on resources created outside of clawker. You won\'t accidentally nuke unrelated containers, networks, or volumes.',
+		href: 'https://docs.clawker.dev/docker-hygiene',
 	},
 	{
 		icon: 'M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z M12 10v4 M10 12h4',
@@ -57,7 +62,8 @@ export const features: Feature[] = [
 		icon: 'M16 3h5v5 M4 20L21 3 M21 16v5h-5 M15 15l6 6 M4 4l5 5',
 		title: 'Git Worktrees',
 		description:
-			'Spin up agents in git worktrees with a single flag. Clawker handles worktree lifecycle for you — create, list, and clean up branches without leaving your workflow.',
+			'Run parallel agents on separate branches with a single flag. Clawker handles worktree lifecycle, and host-path mirroring keeps Claude Code /resume working across container restarts.',
+		href: 'https://docs.clawker.dev/worktrees',
 	},
 	{
 		icon: 'M8 3l4 8 5-5 M4 11h16 M12 11v10 M8 21h8',
@@ -70,23 +76,33 @@ export const features: Feature[] = [
 		title: 'Injectable Build Instructions',
 		description:
 			'Custom packages, environment variables, and scripts injected at container build time. Your Dockerfile, your rules.',
+		href: 'https://docs.clawker.dev/custom-images',
 	},
 	{
 		icon: 'M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4 M14 3v4a2 2 0 0 0 2 2h4',
-		title: 'Post-Init Scripts',
+		title: 'Lifecycle Hooks',
 		description:
-			'Bash scripts that run after container init. Perfect for MCP server setup, custom tooling, or whatever your workflow needs.',
+			'post_init scripts that run once after container init, plus pre_run hooks on every start. Perfect for MCP server setup, custom tooling, or whatever your workflow needs.',
 	},
 	{
 		icon: 'M17 2l4 4-4 4 M3 11v-1a4 4 0 0 1 4-4h14 M7 22l-4-4 4-4 M21 13v1a4 4 0 0 1-4 4H3',
-		title: 'Autonomous Looping',
+		title: 'Control Plane',
 		description:
-			'Experimental looping mode with stagnation detection, circuit breaker protection, and configurable max loop limits. Built-in token and cost tracking so your agent doesn\'t run away with your wallet.',
+			'A per-host supervisor that owns the firewall lifecycle, eBPF programs, and the agent identity registry. mTLS gRPC with OAuth2 — and if the control plane dies, firewall rules stay pinned in the kernel. Fail closed, not open.',
+		href: 'https://docs.clawker.dev/control-plane',
 	},
 	{
 		icon: 'M22 12h-4l-3 9L9 3l-3 9H2',
 		title: 'Monitoring & Observability',
 		description:
-			'Real-time insights into your agents\' performance, decisions, tool calls, costs, token usage, and more. Optional Prometheus, Loki, and Grafana stack with OpenTelemetry integration. Dashboards and alerts out of the box.',
+			'Real-time insight into your agents\' tool calls, decisions, costs, and token usage. Optional OpenTelemetry stack with Prometheus metrics, OpenSearch logs, and preinstalled Claude Code Cost & Usage dashboards out of the box.',
+		href: 'https://docs.clawker.dev/monitoring',
+	},
+	{
+		icon: 'M12 8v4l3 3 M3.05 11a9 9 0 1 1 .5 4 M2 12h4',
+		title: 'Egress Audit Trail',
+		description:
+			'Every firewall decision — allowed, denied, even bypassed — logged as a structured event with per-agent attribution. Records travel an mTLS-authenticated lane agents can\'t forge. Bypass mode is no longer a forensic black hole.',
+		href: 'https://docs.clawker.dev/observability',
 	},
 ];

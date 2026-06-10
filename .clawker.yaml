@@ -1,4 +1,6 @@
 agent:
+  env_file: 
+    - .env
   from_env:
     - GH_TOKEN
     - CONTEXT7_API_KEY
@@ -7,7 +9,13 @@ agent:
     claude mcp add -s user -t http deepwiki https://mcp.deepwiki.com/mcp
     npx ctx7 setup --claude --api-key "$CONTEXT7_API_KEY" --yes
   pre_run: |
-    npm install
+    if [ -f pnpm-lock.yaml ]; then
+      pnpm install
+    elif [ -f package-lock.json ]; then
+      npm ci
+    elif [ -f package.json ]; then
+      npm install
+    fi
 build:
   image: buildpack-deps:bookworm-scm
   instructions:
@@ -25,14 +33,23 @@ build:
     user_run:
       - npm install -g pnpm typescript
       - curl -LsSf https://astral.sh/uv/install.sh | sh
+      - uv tool install pre-commit --with pre-commit-uv
   packages:
     - ripgrep
+    - jq
 security:
   docker_socket: true
   firewall:
     add_domains:
       - github.com
       - api.github.com
+      - mcp.deepwiki.com
+      - mcp.context7.com
+      - context7.com
+      - pypi.org
+      - files.pythonhosted.org
+      - registry-1.docker.io
+      - astral.sh
     rules:
       - action: allow
         dst: github.com
