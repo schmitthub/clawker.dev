@@ -20,8 +20,8 @@ node_modules/
 # .nuxt/
 
 # ── Python ──
-# .venv/
-# __pycache__/
+.venv/
+__pycache__/
 # .mypy_cache/
 
 # ── Go ──
