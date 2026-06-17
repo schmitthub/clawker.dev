@@ -15,13 +15,14 @@
 # Uncomment the lines relevant to your stack:
 
 # ── JavaScript / TypeScript ──
+.astro/
 node_modules/
 # .next/
 # .nuxt/
 
 # ── Python ──
-.venv/
-__pycache__/
+# .venv/
+# __pycache__/
 # .mypy_cache/
 
 # ── Go ──
@@ -46,5 +47,5 @@ __pycache__/
 
 # ── Build outputs ──
 dist/
-build/
+# build/
 # out/
