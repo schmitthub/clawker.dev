@@ -50,6 +50,7 @@ security:
       - files.pythonhosted.org
       - registry-1.docker.io
       - astral.sh
+      - docs.astro.build
     rules:
       - action: allow
         dst: github.com
