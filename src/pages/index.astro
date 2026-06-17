@@ -32,7 +32,7 @@ const structuredData = {
 	name: 'clawker',
 	url: 'https://clawker.dev',
 	description:
-		'Open-source AI container sandbox for Anthropic’s Claude Code agents. Kernel-side egress firewall, credential forwarding, and monitoring — secure-by-default guardrails for agentic coding with mythos-class models like Fable 5.',
+		'Self-hosted AI coding agent sandbox. Run Claude Code in isolated Docker containers on your own machine, behind a deny-by-default egress firewall. Free, open-source, no cloud, no subscription.',
 	applicationCategory: 'DeveloperApplication',
 	operatingSystem: 'macOS, Linux',
 	downloadUrl: 'https://github.com/schmitthub/clawker',
@@ -40,13 +40,15 @@ const structuredData = {
 	license: 'https://opensource.org/license/mit',
 	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 	keywords:
-		'ai container sandbox, claude code, anthropic, fable 5, mythos-class, agent sandbox, agent safety, agent containment, ai agent, ai sandbox, security, docker, containerization, llm, golang',
+		'ai coding agent sandbox, ai agent sandbox, coding agent sandbox, claude code sandbox, run claude code in docker, self-hosted, open source, no cloud, egress firewall, container isolation, network isolation, deny-by-default, devcontainer alternative, parallel claude code agents, git worktree, docker',
 	featureList: [
+		'Per-agent isolated Docker container (agent runs unprivileged, no Linux capabilities)',
 		'Deny-by-default kernel-side egress firewall (Envoy, CoreDNS, eBPF)',
 		'Path- and method-scoped network rules with TLS inspection',
+		'Run agents with --dangerously-skip-permissions safely via container isolation',
 		'SSH, GPG, git, and Claude Code credential forwarding',
 		'Bind or snapshot workspace isolation modes',
-		'Git worktrees for parallel agents',
+		'Git worktrees for parallel Claude Code agents',
 		'Per-decision egress audit trail',
 		'OpenTelemetry monitoring with Claude Code cost dashboards',
 		'Control plane with mTLS-authenticated agents',
@@ -56,7 +58,9 @@ const structuredData = {
 ---
 
 <Layout
-	title="clawker — AI Container Sandbox for Claude Code Agents"
+	title="Clawker — Self-Hosted AI Coding Agent Sandbox"
+	description="Self-hosted AI coding agent sandbox. Run Claude Code in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud."
+	canonicalUrl="https://clawker.dev/"
 	ogImage="https://clawker.dev/og-image.png"
 >
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
