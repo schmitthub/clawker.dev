@@ -6,7 +6,6 @@ import Features from '../components/Features.astro';
 import InstallBlock from '../components/InstallBlock.astro';
 import Footer from '../components/Footer.astro';
 import Faq from '../components/Faq.astro';
-import threatModelSvg from '../assets/threat-model.svg';
 import { faq } from '../data/faq';
 
 const faqSchema = {
@@ -73,7 +72,6 @@ const structuredData = {
 		<div class="threat-model-container">
 			<h2 class="section-title">Harness the harness</h2>
 			<p class="section-desc">A padded cell for AI coding agents — how clawker's container security model compares to running a harness like Claude Code or Codex bare metal or in sandbox mode.</p>
-			<img src={threatModelSvg.src} alt="Threat model diagram comparing the security of bare metal, sandbox, and container deployment modes for Claude Code AI agents" width="880" height="780" loading="lazy" />
 			<blockquote class="threat-quote">
 				<p>"Prompt injection can change the agent's intent, but it can't change the container's constraints."</p>
 				<cite>— the <a href="https://docs.clawker.dev/threat-model" target="_blank" rel="noopener noreferrer">threat model</a></cite>
@@ -119,12 +117,6 @@ const structuredData = {
 		color: var(--text-secondary);
 		margin-bottom: 2.5rem;
 		font-size: 0.95rem;
-	}
-
-	.threat-model img {
-		width: 100%;
-		height: auto;
-		border-radius: 12px;
 	}
 
 	.threat-quote {
