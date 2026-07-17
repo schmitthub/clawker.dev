@@ -1,6 +1,6 @@
 # clawker
 
-> Secure, isolated Docker environments for Anthropic's Claude Code agents. An open-source AI container sandbox: deny-by-default kernel-side egress firewall (Envoy + CoreDNS + eBPF), credential forwarding without exposing keys, git worktrees for parallel agents, and OpenTelemetry monitoring with Claude Code cost dashboards. Works with any model Claude Code runs, from Haiku to mythos-class Fable 5. MIT licensed, written in Go, macOS and Linux.
+> Secure, isolated, local Docker environments for AI coding agents. A harness-agnostic, self-hosted, open-source AI container sandbox: run Claude Code, OpenAI Codex, OpenCode, Pi, or any other coding agent locally — including YOLO mode (--dangerously-skip-permissions, auto-approve) — behind a deny-by-default kernel-side egress firewall (Envoy + CoreDNS + eBPF), with credential forwarding without exposing keys, git worktrees for parallel agents, and OpenTelemetry monitoring with cost dashboards. Extensible via bundles — Dockerfile template fragments plus config files that package harness setups, dev stacks, and monitoring extensions for hand-rolling or distribution (Copilot CLI, Gemini CLI, Kiro, Grok, z.ai, and more can be bundled in). Works with any model your harness runs. MIT licensed, written in Go, macOS and Linux.
 
 This site (clawker.dev) is the project splash page. Full documentation lives at docs.clawker.dev, which also serves an llms.txt and a markdown twin of every page (append .md).
 

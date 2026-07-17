@@ -10,14 +10,20 @@ export const features: Feature[] = [
 		icon: 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z',
 		title: 'Agent-in-Container',
 		description:
-			'Each Claude Code agent gets its own sandboxed Docker container with embedded Dockerfile templates and a purpose-built init daemon. Alpine or Debian, your call.',
+			'Each agent — Claude Code, Codex, OpenCode, Pi, or your own — gets its own sandboxed Docker container with embedded Dockerfile templates and a purpose-built init daemon. Alpine or Debian, your call.',
 		href: 'https://docs.clawker.dev/container-internals',
+	},
+	{
+		icon: 'M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z M3.3 7l8.7 5 8.7-5 M12 22V12',
+		title: 'Harness-Agnostic Bundles',
+		description:
+			'Any coding agent harness, one sandbox. Bundles package harness setups, dev stacks, and monitoring extensions as Dockerfile template fragments plus config files — hand-roll your own or distribute them. Claude Code, Codex, OpenCode, and Pi work out of the box; Copilot, Grok, z.ai, or anything else installable can be bundled in.',
 	},
 	{
 		icon: 'M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z M14 2v6h6 M16 19h2v2 M19 19v2',
 		title: 'Fresh or Copy Agent Mode',
 		description:
-			'Clean install or seamless transition — bring your existing Claude Code settings, plugins, skills, and auth along for the ride. Config and memory persist in volumes across container restarts.',
+			'Clean install or seamless transition — bring your existing harness settings, plugins, skills, and auth along for the ride. Config and memory persist in volumes across container restarts.',
 	},
 	{
 		icon: 'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
@@ -36,7 +42,7 @@ export const features: Feature[] = [
 		icon: 'M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z M4 22v-7',
 		title: 'Credential Forwarding',
 		description:
-			'SSH agent, GPG agent, git HTTPS, and Claude Code auth forwarded from your host automatically — private keys never enter the container. No copy-pasting secrets.',
+			'SSH agent, GPG agent, git HTTPS, and harness auth forwarded from your host automatically — private keys never enter the container. No copy-pasting secrets.',
 		href: 'https://docs.clawker.dev/credentials',
 	},
 	{
@@ -62,7 +68,7 @@ export const features: Feature[] = [
 		icon: 'M16 3h5v5 M4 20L21 3 M21 16v5h-5 M15 15l6 6 M4 4l5 5',
 		title: 'Git Worktrees',
 		description:
-			'Run parallel agents on separate branches with a single flag. Clawker handles worktree lifecycle, and host-path mirroring keeps Claude Code /resume working across container restarts.',
+			'Run parallel agents on separate branches with a single flag. Clawker handles worktree lifecycle, and host-path mirroring keeps session resume (like Claude Code /resume) working across container restarts.',
 		href: 'https://docs.clawker.dev/worktrees',
 	},
 	{
@@ -95,7 +101,7 @@ export const features: Feature[] = [
 		icon: 'M22 12h-4l-3 9L9 3l-3 9H2',
 		title: 'Monitoring & Observability',
 		description:
-			'Real-time insight into your agents\' tool calls, decisions, costs, and token usage. Optional OpenTelemetry stack with Prometheus metrics, OpenSearch logs, and preinstalled Claude Code Cost & Usage dashboards out of the box.',
+			'Real-time insight into your agents\' tool calls, decisions, costs, and token usage. Optional OpenTelemetry stack with Prometheus metrics, OpenSearch logs, and preinstalled Cost & Usage dashboards — extensible per-harness via monitoring bundles.',
 		href: 'https://docs.clawker.dev/monitoring',
 	},
 	{

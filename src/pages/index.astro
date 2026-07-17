@@ -6,7 +6,6 @@ import Features from '../components/Features.astro';
 import InstallBlock from '../components/InstallBlock.astro';
 import Footer from '../components/Footer.astro';
 import Faq from '../components/Faq.astro';
-import threatModelSvg from '../assets/threat-model.svg';
 import { faq } from '../data/faq';
 
 const faqSchema = {
@@ -32,7 +31,7 @@ const structuredData = {
 	name: 'clawker',
 	url: 'https://clawker.dev',
 	description:
-		'Self-hosted AI coding agent sandbox. Run Claude Code in isolated Docker containers on your own machine, behind a deny-by-default egress firewall. Free, open-source, no cloud, no subscription.',
+		'Local, self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi locally in isolated Docker containers on your own machine, behind a deny-by-default egress firewall. Harness-agnostic and extensible with bundles. Free, open-source, no cloud, no subscription.',
 	applicationCategory: 'DeveloperApplication',
 	operatingSystem: 'macOS, Linux',
 	downloadUrl: 'https://github.com/schmitthub/clawker',
@@ -40,15 +39,17 @@ const structuredData = {
 	license: 'https://opensource.org/license/mit',
 	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 	keywords:
-		'ai coding agent sandbox, ai agent sandbox, coding agent sandbox, claude code sandbox, run claude code in docker, self-hosted, open source, no cloud, egress firewall, container isolation, network isolation, deny-by-default, devcontainer alternative, parallel claude code agents, git worktree, docker',
+		'ai coding agent sandbox, ai agent sandbox, coding agent sandbox, claude code sandbox, run claude code in docker, codex sandbox, run openai codex in docker, opencode sandbox, pi coding agent sandbox, local ai agent sandbox, run ai coding agents locally, yolo mode, harness agnostic, ai agent harness, self-hosted, open source, no cloud, egress firewall, container isolation, network isolation, deny-by-default, devcontainer alternative, docker sandboxes alternative, parallel coding agents, git worktree, docker',
 	featureList: [
+		'Harness-agnostic: run Claude Code, OpenAI Codex, OpenCode, Pi, or any coding agent',
+		'Bundle system: hand-roll or distribute harness setups, dev stacks, and monitoring extensions as Dockerfile template fragments and config files',
 		'Per-agent isolated Docker container (agent runs unprivileged, no Linux capabilities)',
 		'Deny-by-default kernel-side egress firewall (Envoy, CoreDNS, eBPF)',
 		'Path- and method-scoped network rules with TLS inspection',
-		'Run agents with --dangerously-skip-permissions safely via container isolation',
-		'SSH, GPG, git, and Claude Code credential forwarding',
+		'Run agents in YOLO mode (--dangerously-skip-permissions, auto-approve) safely via container isolation',
+		'SSH, GPG, git, and harness credential forwarding',
 		'Bind or snapshot workspace isolation modes',
-		'Git worktrees for parallel Claude Code agents',
+		'Git worktrees for parallel coding agents',
 		'Per-decision egress audit trail',
 		'OpenTelemetry monitoring with Claude Code cost dashboards',
 		'Control plane with mTLS-authenticated agents',
@@ -58,8 +59,8 @@ const structuredData = {
 ---
 
 <Layout
-	title="Clawker — Self-Hosted AI Coding Agent Sandbox"
-	description="Self-hosted AI coding agent sandbox. Run Claude Code in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud."
+	title="Clawker — Local, Self-Hosted Sandbox for Any AI Coding Agent"
+	description="Local, self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi locally in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud."
 	canonicalUrl="https://clawker.dev/"
 	ogImage="https://clawker.dev/og-image.png"
 >
@@ -71,8 +72,7 @@ const structuredData = {
 	<section class="threat-model">
 		<div class="threat-model-container">
 			<h2 class="section-title">Harness the harness</h2>
-			<p class="section-desc">A padded cell for AI coding agents — how clawker's container security model compares to running Claude Code bare metal or in sandbox mode.</p>
-			<img src={threatModelSvg.src} alt="Threat model diagram comparing the security of bare metal, sandbox, and container deployment modes for Claude Code AI agents" width="880" height="780" loading="lazy" />
+			<p class="section-desc">A padded cell for AI coding agents — how clawker's container security model compares to running a harness like Claude Code or Codex bare metal or in sandbox mode.</p>
 			<blockquote class="threat-quote">
 				<p>"Prompt injection can change the agent's intent, but it can't change the container's constraints."</p>
 				<cite>— the <a href="https://docs.clawker.dev/threat-model" target="_blank" rel="noopener noreferrer">threat model</a></cite>
@@ -118,12 +118,6 @@ const structuredData = {
 		color: var(--text-secondary);
 		margin-bottom: 2.5rem;
 		font-size: 0.95rem;
-	}
-
-	.threat-model img {
-		width: 100%;
-		height: auto;
-		border-radius: 12px;
 	}
 
 	.threat-quote {

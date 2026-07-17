@@ -5,24 +5,39 @@ export interface FaqItem {
 
 export const faq: FaqItem[] = [
 	{
-		question: 'How do I sandbox Claude Code?',
+		question: 'How do I sandbox Claude Code, Codex, or another coding agent?',
 		answer:
-			'Run it in a container. clawker builds an isolated Docker container per agent with a deny-by-default egress firewall, forwards your git credentials and Claude Code settings in, and gives you a single CLI to build, run, and attach. One command: clawker run.',
+			'Run it in a container. clawker builds an isolated Docker container per agent with a deny-by-default egress firewall, forwards your git credentials and harness settings in, and gives you a single CLI to build, run, and attach. One command: clawker run.',
 	},
 	{
-		question: 'Is it safe to run Claude Code with --dangerously-skip-permissions?',
+		question: 'Which coding agent harnesses does clawker support?',
 		answer:
-			'On your host, you are trusting the agent with your filesystem, credentials, and network. Inside a clawker container the blast radius is the container: the workspace is the only host data mounted in, outbound traffic is blocked unless whitelisted, and the agent runs unprivileged with no Linux capabilities.',
+			'clawker is harness-agnostic. Claude Code, OpenAI Codex, OpenCode, and Pi run out of the box via bundles. Anything else installable — GitHub Copilot CLI, Gemini CLI, Kiro, Grok, z.ai, or your own tool — can be set up through the same bundle system. Sky is the limit: if it installs in a Docker image, clawker can sandbox it.',
+	},
+	{
+		question: 'What is a clawker bundle?',
+		answer:
+			'A bundle packages a harness setup, dev stack, or monitoring extension as Dockerfile template fragments plus config files. Hand-roll one for your own workflow or distribute it for others to use — the same mechanism powers the built-in Claude Code, Codex, OpenCode, and Pi setups.',
+	},
+	{
+		question: 'Is it safe to run agents in YOLO mode (--dangerously-skip-permissions, auto-approve)?',
+		answer:
+			'On your host, you are trusting the agent with your filesystem, credentials, and network. Inside a clawker container the blast radius is the container: the workspace is the only host data mounted in, outbound traffic is blocked unless whitelisted, and the agent runs unprivileged with no Linux capabilities. That makes YOLO mode — Claude Code --dangerously-skip-permissions, Codex full-auto, and friends — a calculated risk instead of a leap of faith.',
+	},
+	{
+		question: 'How is clawker different from Docker Sandboxes?',
+		answer:
+			'Docker Sandboxes give each agent a disposable microVM, but its egress rules stop at the domain, IP, and port level. clawker filters deeper: per-path rules (literal prefix or anchored regex), HTTP method whitelisting, and hostname-scoped rules for opaque protocols like SSH — where Docker Sandboxes only allows non-HTTP TCP by raw IP and blocks UDP outright. clawker also ships a full OpenTelemetry monitoring stack (Prometheus metrics, OpenSearch logs, cost dashboards) and a per-decision egress audit trail for free — no account, no subscription, MIT-licensed, and extensible to any harness via bundles.',
 	},
 	{
 		question: 'How is clawker different from devcontainers or Claude Code sandbox mode?',
 		answer:
-			'Devcontainers hand you a container and stop there. clawker ships the infrastructure around it: a control plane and kernel-side firewall stack in a box, agents seeded with auth material for provenance and trust, a custom PID 1 supervisor that executes control-plane commands, OpenTelemetry monitoring pre-built for Claude Code and security events, and Claude Code memory that persists between environments. Sandbox mode restricts the process — but it still shares your host.',
+			'Devcontainers hand you a container and stop there. clawker ships the infrastructure around it: a control plane and kernel-side firewall stack in a box, agents seeded with auth material for provenance and trust, a custom PID 1 supervisor that executes control-plane commands, OpenTelemetry monitoring pre-built for coding agents and security events, and harness memory that persists between environments. Sandbox mode restricts the process — but it still shares your host.',
 	},
 	{
 		question: 'Which models does clawker work with?',
 		answer:
-			'Any model Claude Code can run — clawker contains the harness, not the model. That includes Anthropic models from Haiku and Sonnet up to mythos-class Fable 5.',
+			'Any model your harness can run — clawker contains the harness, not the model. Anthropic models from Haiku up to mythos-class Fable 5 via Claude Code, OpenAI models via Codex, and any provider your harness of choice supports.',
 	},
 	{
 		question: 'What platforms does clawker support?',
