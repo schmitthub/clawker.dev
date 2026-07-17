@@ -8,7 +8,7 @@ interface Props {
 
 const {
 	title,
-	description = 'Self-hosted AI coding agent sandbox. Run Claude Code in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud.',
+	description = 'Self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud.',
 	canonicalUrl = Astro.url.href,
 	ogImage,
 } = Astro.props;
@@ -19,6 +19,13 @@ const keywords = [
 	'coding agent sandbox',
 	'claude code sandbox',
 	'run claude code in docker',
+	'codex sandbox',
+	'run openai codex in docker',
+	'opencode sandbox',
+	'pi coding agent sandbox',
+	'harness agnostic',
+	'ai agent harness',
+	'agent harness sandbox',
 	'self-hosted',
 	'open source',
 	'egress firewall',
@@ -26,10 +33,13 @@ const keywords = [
 	'network isolation',
 	'deny-by-default',
 	'devcontainer alternative',
-	'parallel claude code agents',
+	'parallel coding agents',
 	'git worktree',
 	'docker',
 	'claude code',
+	'openai codex',
+	'opencode',
+	'github copilot cli',
 ].join(', ');
 ---
 
