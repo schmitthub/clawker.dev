@@ -12,7 +12,7 @@ export const faq: FaqItem[] = [
 	{
 		question: 'Which coding agent harnesses does clawker support?',
 		answer:
-			'clawker is harness-agnostic. Claude Code, OpenAI Codex, OpenCode, and Pi run out of the box via bundles. Anything else installable — GitHub Copilot CLI, Grok, z.ai, or your own tool — can be set up through the same bundle system. Sky is the limit: if it installs in a Docker image, clawker can sandbox it.',
+			'clawker is harness-agnostic. Claude Code, OpenAI Codex, OpenCode, and Pi run out of the box via bundles. Anything else installable — GitHub Copilot CLI, Gemini CLI, Kiro, Grok, z.ai, or your own tool — can be set up through the same bundle system. Sky is the limit: if it installs in a Docker image, clawker can sandbox it.',
 	},
 	{
 		question: 'What is a clawker bundle?',
@@ -20,9 +20,14 @@ export const faq: FaqItem[] = [
 			'A bundle packages a harness setup, dev stack, or monitoring extension as Dockerfile template fragments plus config files. Hand-roll one for your own workflow or distribute it for others to use — the same mechanism powers the built-in Claude Code, Codex, OpenCode, and Pi setups.',
 	},
 	{
-		question: 'Is it safe to run Claude Code with --dangerously-skip-permissions?',
+		question: 'Is it safe to run agents in YOLO mode (--dangerously-skip-permissions, auto-approve)?',
 		answer:
-			'On your host, you are trusting the agent with your filesystem, credentials, and network. Inside a clawker container the blast radius is the container: the workspace is the only host data mounted in, outbound traffic is blocked unless whitelisted, and the agent runs unprivileged with no Linux capabilities.',
+			'On your host, you are trusting the agent with your filesystem, credentials, and network. Inside a clawker container the blast radius is the container: the workspace is the only host data mounted in, outbound traffic is blocked unless whitelisted, and the agent runs unprivileged with no Linux capabilities. That makes YOLO mode — Claude Code --dangerously-skip-permissions, Codex full-auto, and friends — a calculated risk instead of a leap of faith.',
+	},
+	{
+		question: 'How is clawker different from Docker Sandboxes?',
+		answer:
+			'Docker Sandboxes give each agent a disposable microVM with its own Docker daemon — great isolation, cloud-connected tooling. clawker is fully local and self-hosted: plain Docker containers wrapped in a kernel-side deny-by-default egress firewall with path- and method-level rules, a control plane with per-agent identity, a tamper-evident egress audit trail, and OpenTelemetry monitoring. No account, no subscription, MIT-licensed, and extensible to any harness via bundles.',
 	},
 	{
 		question: 'How is clawker different from devcontainers or Claude Code sandbox mode?',

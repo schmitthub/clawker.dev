@@ -32,7 +32,7 @@ const structuredData = {
 	name: 'clawker',
 	url: 'https://clawker.dev',
 	description:
-		'Self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi in isolated Docker containers on your own machine, behind a deny-by-default egress firewall. Harness-agnostic and extensible with bundles. Free, open-source, no cloud, no subscription.',
+		'Local, self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi locally in isolated Docker containers on your own machine, behind a deny-by-default egress firewall. Harness-agnostic and extensible with bundles. Free, open-source, no cloud, no subscription.',
 	applicationCategory: 'DeveloperApplication',
 	operatingSystem: 'macOS, Linux',
 	downloadUrl: 'https://github.com/schmitthub/clawker',
@@ -40,14 +40,14 @@ const structuredData = {
 	license: 'https://opensource.org/license/mit',
 	offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 	keywords:
-		'ai coding agent sandbox, ai agent sandbox, coding agent sandbox, claude code sandbox, run claude code in docker, codex sandbox, run openai codex in docker, opencode sandbox, pi coding agent sandbox, harness agnostic, ai agent harness, self-hosted, open source, no cloud, egress firewall, container isolation, network isolation, deny-by-default, devcontainer alternative, parallel coding agents, git worktree, docker',
+		'ai coding agent sandbox, ai agent sandbox, coding agent sandbox, claude code sandbox, run claude code in docker, codex sandbox, run openai codex in docker, opencode sandbox, pi coding agent sandbox, local ai agent sandbox, run ai coding agents locally, yolo mode, harness agnostic, ai agent harness, self-hosted, open source, no cloud, egress firewall, container isolation, network isolation, deny-by-default, devcontainer alternative, docker sandboxes alternative, parallel coding agents, git worktree, docker',
 	featureList: [
 		'Harness-agnostic: run Claude Code, OpenAI Codex, OpenCode, Pi, or any coding agent',
 		'Bundle system: hand-roll or distribute harness setups, dev stacks, and monitoring extensions as Dockerfile template fragments and config files',
 		'Per-agent isolated Docker container (agent runs unprivileged, no Linux capabilities)',
 		'Deny-by-default kernel-side egress firewall (Envoy, CoreDNS, eBPF)',
 		'Path- and method-scoped network rules with TLS inspection',
-		'Run agents with --dangerously-skip-permissions safely via container isolation',
+		'Run agents in YOLO mode (--dangerously-skip-permissions, auto-approve) safely via container isolation',
 		'SSH, GPG, git, and harness credential forwarding',
 		'Bind or snapshot workspace isolation modes',
 		'Git worktrees for parallel coding agents',
@@ -60,8 +60,8 @@ const structuredData = {
 ---
 
 <Layout
-	title="Clawker — Self-Hosted Sandbox for Any AI Coding Agent"
-	description="Self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud."
+	title="Clawker — Local, Self-Hosted Sandbox for Any AI Coding Agent"
+	description="Local, self-hosted sandbox for any AI coding agent. Run Claude Code, OpenAI Codex, OpenCode, or Pi locally in isolated Docker containers behind a deny-by-default egress firewall. Free, open-source, no cloud."
 	canonicalUrl="https://clawker.dev/"
 >
 	<script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
