@@ -27,7 +27,7 @@ export const faq: FaqItem[] = [
 	{
 		question: 'How is clawker different from Docker Sandboxes?',
 		answer:
-			'Docker Sandboxes give each agent a disposable microVM with its own Docker daemon — great isolation, cloud-connected tooling. clawker is fully local and self-hosted: plain Docker containers wrapped in a kernel-side deny-by-default egress firewall with path- and method-level rules, a control plane with per-agent identity, a tamper-evident egress audit trail, and OpenTelemetry monitoring. No account, no subscription, MIT-licensed, and extensible to any harness via bundles.',
+			'Docker Sandboxes give each agent a disposable microVM, but its egress rules stop at the domain, IP, and port level. clawker filters deeper: per-path rules (literal prefix or anchored regex), HTTP method whitelisting, and hostname-scoped rules for opaque protocols like SSH — where Docker Sandboxes only allows non-HTTP TCP by raw IP and blocks UDP outright. clawker also ships a full OpenTelemetry monitoring stack (Prometheus metrics, OpenSearch logs, cost dashboards) and a per-decision egress audit trail for free — no account, no subscription, MIT-licensed, and extensible to any harness via bundles.',
 	},
 	{
 		question: 'How is clawker different from devcontainers or Claude Code sandbox mode?',
