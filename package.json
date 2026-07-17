@@ -1,25 +1,27 @@
 {
-  "name": "src",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "astro": "^6.4.8"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-darwin-arm64": "^4.57.1"
-  },
-  "devDependencies": {
-    "wrangler": "^4.101.0"
-  },
-  "overrides": {
-    "esbuild": "^0.28.1",
-    "ws": "^8.21.0"
-  }
+	"name": "src",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"generate:og": "node scripts/generate-og.mjs"
+	},
+	"dependencies": {
+		"@astrojs/sitemap": "^3.7.3",
+		"astro": "^6.4.8"
+	},
+	"optionalDependencies": {
+		"@rollup/rollup-darwin-arm64": "^4.57.1"
+	},
+	"devDependencies": {
+		"sharp": "^0.35.3",
+		"wrangler": "^4.101.0"
+	},
+	"overrides": {
+		"esbuild": "^0.28.1",
+		"ws": "^8.21.0"
+	}
 }

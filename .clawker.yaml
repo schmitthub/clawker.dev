@@ -34,6 +34,17 @@ build:
           grep " ${GH_FILE}\$" "${CHECKSUMS_FILE}" | sha256sum -c - && \
           tar -C /usr/local -xzf "${GH_FILE}" --strip-components=1 && \
           rm -f "${GH_FILE}" "${CHECKSUMS_FILE}"
+      # brand fonts (Clash Display, Satoshi, Inter) for og-image / SVG-to-PNG rendering
+      - |-
+        mkdir -p /usr/local/share/fonts/brand && cd /tmp && \
+          curl -fsSL -o clash-display.zip "https://api.fontshare.com/v2/fonts/download/clash-display" && \
+          curl -fsSL -o satoshi.zip "https://api.fontshare.com/v2/fonts/download/satoshi" && \
+          unzip -oj clash-display.zip '*.otf' -d /usr/local/share/fonts/brand && \
+          unzip -oj satoshi.zip '*.otf' -d /usr/local/share/fonts/brand && \
+          curl -fsSL -o /usr/local/share/fonts/brand/Inter-Variable.ttf \
+            "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/Inter%5Bopsz%2Cwght%5D.ttf" && \
+          rm -f clash-display.zip satoshi.zip && \
+          fc-cache -f
     user_run:
       - npm install -g pnpm typescript
       - curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -41,6 +52,8 @@ build:
   packages:
     - ripgrep
     - jq
+    - fontconfig
+    - unzip
 security:
   docker_socket: true
   firewall:
@@ -61,5 +74,20 @@ security:
         insecure_skip_tls_verify: false
         port: "22"
         proto: ssh
+      # brand font binaries (Clash Display, Satoshi) for og-image rendering
+      - dst: cdn.fontshare.com
+        proto: https
+      # Fontshare zip download endpoint (build-time font install)
+      - dst: api.fontshare.com
+        proto: https
+        path_rules:
+          - path: /v2/fonts/download/
+            action: allow
+      # Google Fonts TTFs (Inter) — scoped to the google/fonts repo only
+      - dst: raw.githubusercontent.com
+        proto: https
+        path_rules:
+          - path: /google/fonts/
+            action: allow
 monitoring: 
   extensions: claude-code

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+	<defs>
+		<linearGradient id="logo" x1="0%" y1="0%" x2="100%" y2="100%">
+			<stop offset="0%" stop-color="#f59e0b"/>
+			<stop offset="50%" stop-color="#fbbf24"/>
+			<stop offset="100%" stop-color="#d97706"/>
+		</linearGradient>
+		<radialGradient id="glow" cx="50%" cy="30%" r="65%">
+			<stop offset="0%" stop-color="#f59e0b" stop-opacity="0.14"/>
+			<stop offset="45%" stop-color="#f59e0b" stop-opacity="0.05"/>
+			<stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+		</radialGradient>
+		<pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+			<circle cx="1.5" cy="1.5" r="1.5" fill="#8b8b9e" fill-opacity="0.07"/>
+		</pattern>
+	</defs>
+
+	<!-- background -->
+	<rect width="1200" height="630" fill="#09090b"/>
+	<rect width="1200" height="630" fill="url(#dots)"/>
+	<rect width="1200" height="630" fill="url(#glow)"/>
+
+	<!-- container frame: corner brackets -->
+	<g stroke="#f59e0b" stroke-opacity="0.55" stroke-width="3" fill="none" stroke-linecap="round">
+		<path d="M44 92 V60 a16 16 0 0 1 16 -16 H92"/>
+		<path d="M1108 44 h48 a16 16 0 0 1 16 16 V92"/>
+		<path d="M1156 538 v32 a16 16 0 0 1 -16 16 h-32"/>
+		<path d="M92 586 H60 a16 16 0 0 1 -16 -16 v-32"/>
+	</g>
+
+	<!-- wordmark -->
+	<text x="600" y="238" text-anchor="middle" font-family="Inter" font-weight="700" font-size="148" letter-spacing="-3" fill="url(#logo)">clawker</text>
+
+	<!-- headline -->
+	<text x="600" y="330" text-anchor="middle" font-family="Clash Display" font-weight="600" font-size="42" fill="#f0f0f5">Put your agents in containers where they belong.</text>
+
+	<!-- subline: harness roster -->
+	<text x="600" y="392" text-anchor="middle" font-family="Satoshi" font-weight="500" font-size="28" fill="#8b8b9e">Local, self-hosted sandbox for any AI coding agent</text>
+	<text x="600" y="438" text-anchor="middle" font-family="Satoshi" font-weight="700" font-size="26" fill="#d4d4e0">Claude Code <tspan fill="#f59e0b">·</tspan> Codex <tspan fill="#f59e0b">·</tspan> OpenCode <tspan fill="#f59e0b">·</tspan> Pi <tspan fill="#f59e0b">·</tspan> bring your own</text>
+
+	<!-- badges -->
+	<g font-family="Satoshi" font-weight="500" font-size="21" text-anchor="middle">
+		<rect x="273" y="486" width="292" height="46" rx="23" fill="#111113" stroke="#8b8b9e" stroke-opacity="0.25"/>
+		<text x="419" y="516" fill="#8b8b9e">deny-by-default firewall</text>
+		<rect x="585" y="486" width="176" height="46" rx="23" fill="#111113" stroke="#8b8b9e" stroke-opacity="0.25"/>
+		<text x="673" y="516" fill="#8b8b9e">open source</text>
+		<rect x="781" y="486" width="146" height="46" rx="23" fill="#111113" stroke="#8b8b9e" stroke-opacity="0.25"/>
+		<text x="854" y="516" fill="#06b6d4">no cloud</text>
+	</g>
+</svg>
