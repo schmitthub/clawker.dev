@@ -68,6 +68,10 @@ security:
       - registry-1.docker.io
       - astral.sh
       - docs.astro.build
+      # live site + docs, for post-deploy verification
+      - clawker.dev
+      - www.clawker.dev
+      - docs.clawker.dev
     rules:
       - action: allow
         dst: github.com
