@@ -71,7 +71,7 @@ const keywords = [
 		<slot name="head" />
 
 		<!-- Twitter Card -->
-		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		{ogImage && <meta name="twitter:image" content={ogImage} />}
